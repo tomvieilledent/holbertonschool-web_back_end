@@ -12,7 +12,4 @@ async def async_comprehension() -> List[float]:
     Uses async comprehension to iterate through the async generator
     and accumulate all yielded float values into a single list.
     """
-    result = []
-    async for i in async_generator():
-        result.append(i)
-    return result
+    return[i async for i in async_generator()]
