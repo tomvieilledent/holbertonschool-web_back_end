@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Convert key-value to tuple with squared value."""
 from typing import Union, Tuple
 

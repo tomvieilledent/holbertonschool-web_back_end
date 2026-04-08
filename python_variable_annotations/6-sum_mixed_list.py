@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Sum list of mixed int and float values."""
 from typing import List, Union
 
