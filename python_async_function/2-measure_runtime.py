@@ -11,5 +11,5 @@ async def measure_time(n: int, max_delay: float) -> float:
     start = time.time()
     await wait_n(n, max_delay)
     end = time.time()
-
-    return float((end - start)/n)
+    total_time = end - start
+    return total_time / n
