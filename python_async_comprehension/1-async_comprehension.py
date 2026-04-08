@@ -8,8 +8,8 @@ async_generator = __import__('0-async_generator').async_generator
 
 async def async_comprehension() -> List[float]:
     """Collect all values from async_generator into a list.
-    
+
     Uses async comprehension to iterate through the async generator
     and accumulate all yielded float values into a single list.
     """
-    return[i async for i in async_generator()]
+    return [i async for i in async_generator()]
