@@ -26,7 +26,7 @@ class Server:
                 dataset = [row for row in reader]
             self.__dataset = dataset[1:]
         return self.__dataset
-    
+
     def indexed_dataset(self) -> Dict[int, List]:
         """Dataset indexed by sorting position, starting at 0
         """
@@ -38,7 +38,9 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+    def get_hyper_index(self, index: int = None,
+                        page_size: int = 10) -> Dict:
+        """Return deletion-resilient page with hypermedia metadata."""
         if index is None:
             index = 0
         assert isinstance(index, int) and index >= 0
