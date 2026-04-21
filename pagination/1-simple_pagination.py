@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+"""Pagination with simple page and page_size parameters."""
 import csv
 import math
 from typing import List
@@ -32,12 +32,11 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """Return requested page of dataset."""
-        assert isinstance(
-            page, int) and page > 0,  "Page must be an int and greater than 0"
-        assert isinstance(
-            page_size, int) and page_size > 0, "Page size must be an"
-        " int and greater than 0"
+        """Get a specific page from the dataset."""
+        assert isinstance(page, int) and page > 0, \
+            "page must be a positive integer"
+        assert isinstance(page_size, int) and page_size > 0, \
+            "page_size must be a positive integer"
         start, end = index_range(page, page_size)
         data = self.dataset()
         if start >= len(data):
