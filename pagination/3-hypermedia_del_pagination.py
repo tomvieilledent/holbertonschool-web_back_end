@@ -43,16 +43,19 @@ class Server:
         """Return deletion-resilient page with hypermedia metadata."""
         if index is None:
             index = 0
-        assert isinstance(index, int) and index >= 0
         indexed_data = self.indexed_dataset()
+        assert isinstance(index, int) and 0 <= index < len(indexed_data), \
+            "index out of range"
         data = []
         i = index
-        while len(data) < page_size and i in indexed_data:
-            data.append(indexed_data[i])
+        while len(data) < page_size and i <= max(indexed_data.keys()):
+            if i in indexed_data:
+                data.append(indexed_data[i])
             i += 1
+
         return {
             "index": index,
-            "next_index": i if i in indexed_data else None,
+            "next_index": i,
             "page_size": page_size,
             "data": data
         }
