@@ -47,8 +47,8 @@ class Server:
             "page must be a positive integer"
         assert isinstance(page_size, int) and page_size > 0, \
             "page_size must be a positive integer"
-        data = self.dataset()
         start, end = index_range(page, page_size)
+        data = self.dataset()
         total_pages = math.ceil(len(data) / page_size)
         return {
             "page_size": page_size,
