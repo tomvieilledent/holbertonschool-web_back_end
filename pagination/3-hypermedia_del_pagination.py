@@ -44,14 +44,17 @@ class Server:
         if index is None:
             index = 0
         indexed_data = self.indexed_dataset()
-        assert isinstance(index, int) and 0 <= index < len(indexed_data), \
-            "index out of range"
+        assert isinstance(index, int) and 0 <= index <= \
+            max(indexed_data.keys()) if indexed_data else index == 0
         data = []
         i = index
-        while len(data) < page_size and i <= max(indexed_data.keys()):
+        while len(data) < page_size and i in indexed_data or \
+                i <= max(indexed_data.keys()):
             if i in indexed_data:
                 data.append(indexed_data[i])
             i += 1
+            if len(data) >= page_size:
+                break
 
         return {
             "index": index,
