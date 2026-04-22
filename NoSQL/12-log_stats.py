@@ -1,25 +1,20 @@
 #!/usr/bin/env python3
-"""Provides statistics about Nginx logs stored in MongoDB."""
+"""Script that provides some stats about Nginx logs stored in MongoDB"""
+import pymongo
 
-from pymongo import MongoClient
 
+def log_stats():
+    """Returns some stats about Nginx logs stored in MongoDB"""
+    client = pymongo.MongoClient("mongodb://localhost:27017/")
+    db = client.logs
+    logs = db.nginx
 
-def log_stats() -> None:
-    """Display Nginx logs statistics from logs.nginx collection."""
-    client = MongoClient("mongodb://127.0.0.1:27017")
-    collection = client.logs.nginx
-
-    total_logs = collection.count_documents({})
-    print(f"{total_logs} logs")
-    print("Methods:")
-
+    print('{} logs'.format(logs.count_documents({})))
+    print('Methods:')
     for method in ["GET", "POST", "PUT", "PATCH", "DELETE"]:
-        method_count = collection.count_documents({"method": method})
-        print(f"\tmethod {method}: {method_count}")
+        print("\tmethod {}: {}".format(method, logs.count_documents({"method": method})))
 
-    status_checks = collection.count_documents({"method": "GET", "path": "/status"})
-    print(f"{status_checks} status check")
+    print("{} status check".format(logs.count_documents({"method": "GET", "path": "/status"})))
 
-
-if __name__ == "__main__":
+if __name__ == "__mainn__":
     log_stats()
