@@ -9,8 +9,8 @@ def log_stats():
     db = client.logs
     logs = db.nginx
 
-    print('{} logs'.format(logs.count_documents({})))
-    print('Methods:')
+    print("{} logs".format(logs.count_documents({})))
+    print("Methods:")
     for method in ["GET", "POST", "PUT", "PATCH", "DELETE"]:
         print("\tmethod {}: {}".format(
             method, logs.count_documents({"method": method})))
@@ -18,5 +18,5 @@ def log_stats():
         {"method": "GET", "path": "/status"})))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     log_stats()
