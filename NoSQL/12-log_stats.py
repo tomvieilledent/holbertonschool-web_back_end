@@ -13,7 +13,6 @@ def log_stats():
     print('Methods:')
     for method in ["GET", "POST", "PUT", "PATCH", "DELETE"]:
         print("\tmethod {}: {}".format(method, logs.count_documents({"method": method})))
-
     print("{} status check".format(logs.count_documents({"method": "GET", "path": "/status"})))
 
 if __name__ == "__mainn__":
