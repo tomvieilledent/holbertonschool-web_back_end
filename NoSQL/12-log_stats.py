@@ -12,8 +12,9 @@ def log_stats():
     print('{} logs'.format(logs.count_documents({})))
     print('Methods:')
     for method in ["GET", "POST", "PUT", "PATCH", "DELETE"]:
-        print("\tmethod {}: {}".format(method, logs.count_documents({"method": method})))
-    print("{} status check".format(logs.count_documents({"method": "GET", "path": "/status"})))
+        print("\tmethod {}: {}".format(
+            method, logs.count_documents({"method": method})))
+    print("{} status check".format(logs.count_documents(
+        {"method": "GET", "path": "/status"})))
 
-if __name__ == "__mainn__":
-    log_stats()
+log_stats()
