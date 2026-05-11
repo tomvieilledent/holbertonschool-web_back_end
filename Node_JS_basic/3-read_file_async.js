@@ -20,8 +20,7 @@ function countStudents(path) {
           fields[field].push(firstname);
         }
       });
-
-      // Print to console as required
+      
       console.log(`Number of students: ${students.length}`);
       Object.entries(fields).forEach(([field, list]) => {
         const line = `Number of students in ${field}: ${list.length}. List: ${list.join(', ')}`;
